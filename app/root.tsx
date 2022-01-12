@@ -1,5 +1,6 @@
 import {
   Links,
+  LinksFunction,
   LiveReload,
   Meta,
   Outlet,
@@ -12,9 +13,14 @@ import { connect } from "./ws-client";
 import { Socket } from "socket.io-client";
 import { wsContext } from "./ws-context";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
+import styles from "./styles.css";
 
 export const meta: MetaFunction = () => {
   return { title: "Simple Google Docs" };
+};
+
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: styles }];
 };
 
 export default function App() {
