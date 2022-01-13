@@ -15,13 +15,9 @@ const httpServer = createServer(app);
 const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
-  console.log(socket.id, "connected");
-
-  socket.emit("event", "connected!");
-
-  socket.on("something", (data) => {
-    console.log(socket.id, data);
-    socket.emit("event", "pong");
+  socket.on("send-client", (data) => {
+    socket.emit("receive-client", data);
+    socket.broadcast.emit("receive-client", data);
   });
 });
 

@@ -24,23 +24,16 @@ export const links: LinksFunction = () => {
 };
 
 export default function App() {
-  let [socket, setSocket] =
+  const [socket, setSocket] =
     React.useState<Socket<DefaultEventsMap, DefaultEventsMap>>();
 
   React.useEffect(() => {
-    let connection = connect();
+    const connection = connect();
     setSocket(connection);
     return () => {
       connection.close();
     };
   }, []);
-
-  React.useEffect(() => {
-    if (!socket) return;
-    socket.on("event", (data) => {
-      console.log(data);
-    });
-  }, [socket]);
 
   return (
     <html lang="en">

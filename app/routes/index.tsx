@@ -7,18 +7,15 @@ export default function Index() {
   const socket = React.useContext(wsContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value);
-    socket!.emit("something", "ping");
+    socket!.emit("send-client", event.target.value);
   };
 
   React.useEffect(() => {
     if (!socket) return;
 
-    socket.on("event", (data) => {
-      console.log(data);
+    socket.on("receive-client", (data) => {
+      setText(data);
     });
-
-    socket.emit("something", "ping");
   }, [socket]);
 
   return (
