@@ -6,34 +6,34 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "remix";
-import React from "react";
-import type { MetaFunction } from "remix";
-import { connect } from "./ws-client";
-import { Socket } from "socket.io-client";
-import { wsContext } from "./ws-context";
-import { DefaultEventsMap } from "socket.io/dist/typed-events";
-import styles from "./styles.css";
+} from 'remix'
+import React from 'react'
+import type { MetaFunction } from 'remix'
+import { connect } from './ws-client'
+import { Socket } from 'socket.io-client'
+import { wsContext } from './ws-context'
+import { DefaultEventsMap } from 'socket.io/dist/typed-events'
+import styles from './styles.css'
 
 export const meta: MetaFunction = () => {
-  return { title: "Simple Google Docs" };
-};
+  return { title: 'Simple Google Docs' }
+}
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
-};
+  return [{ rel: 'stylesheet', href: styles }]
+}
 
 export default function App() {
   const [socket, setSocket] =
-    React.useState<Socket<DefaultEventsMap, DefaultEventsMap>>();
+    React.useState<Socket<DefaultEventsMap, DefaultEventsMap>>()
 
   React.useEffect(() => {
-    const connection = connect();
-    setSocket(connection);
+    const connection = connect()
+    setSocket(connection)
     return () => {
-      connection.close();
-    };
-  }, []);
+      connection.close()
+    }
+  }, [])
 
   return (
     <html lang="en">
@@ -49,8 +49,8 @@ export default function App() {
         </wsContext.Provider>
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
-  );
+  )
 }

@@ -1,40 +1,40 @@
-import * as React from "react";
-import { colors } from "~/theme";
-import { wsContext } from "~/ws-context";
+import * as React from 'react'
+import { colors } from '~/theme'
+import { wsContext } from '~/ws-context'
 
 export default function Index() {
-  const [text, setText] = React.useState("");
-  const socket = React.useContext(wsContext);
+  const [text, setText] = React.useState('')
+  const socket = React.useContext(wsContext)
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    socket!.emit("send-client", event.target.value);
-  };
+    socket!.emit('send-client', event.target.value)
+  }
 
   React.useEffect(() => {
-    if (!socket) return;
+    if (!socket) return
 
-    socket.on("receive-client", (data) => {
-      setText(data);
-    });
-  }, [socket]);
+    socket.on('receive-client', (data) => {
+      setText(data)
+    })
+  }, [socket])
 
   return (
     <main
       style={{
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
       }}
     >
       <h1
         style={{
           fontSize: 40,
           color: colors.red,
-          fontWeight: "bold",
-          fontFamily: "sans-serif",
+          fontWeight: 'bold',
+          fontFamily: 'sans-serif',
           marginTop: 25,
         }}
       >
@@ -46,8 +46,8 @@ export default function Index() {
           fontSize: 25,
           marginTop: 20,
           color: colors.pink,
-          textAlign: "center",
-          fontFamily: "sans-serif",
+          textAlign: 'center',
+          fontFamily: 'sans-serif',
           fontWeight: 500,
         }}
       >
@@ -59,7 +59,7 @@ export default function Index() {
         value={text}
         onChange={handleChange}
         style={{
-          width: "80vw",
+          width: '80vw',
           maxWidth: 800,
           height: 900,
           marginTop: 30,
@@ -71,5 +71,5 @@ export default function Index() {
         }}
       ></textarea>
     </main>
-  );
+  )
 }
