@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { LoaderFunction, useLoaderData } from 'remix'
+import { Textarea } from '~/components/Textarea'
 import { colors } from '~/theme'
 import { wsContext } from '~/ws-context'
 
@@ -58,38 +59,9 @@ export default function Index() {
           marginTop: 25,
         }}
       >
-        Extremely Simple Google Docs
+        Extremely Simple Google Docs Room {room}
       </h1>
-      <label
-        htmlFor="text"
-        style={{
-          fontSize: 25,
-          marginTop: 20,
-          color: colors.pink,
-          textAlign: 'center',
-          fontFamily: 'sans-serif',
-          fontWeight: 500,
-        }}
-      >
-        Text
-      </label>
-      <textarea
-        name="text"
-        id="text"
-        value={text}
-        onChange={handleChange}
-        style={{
-          width: '80vw',
-          maxWidth: 800,
-          height: 900,
-          marginTop: 30,
-          color: colors.orange,
-          backgroundColor: colors.brown,
-          fontSize: 20,
-          padding: 20,
-          border: `2px solid ${colors.pink}`,
-        }}
-      ></textarea>
+      <Textarea text={text} handleChange={handleChange} />
     </main>
   )
 }
