@@ -1,8 +1,9 @@
 {
   "private": true,
   "name": "remix-app-template",
-  "description": "",
-  "license": "",
+  "author": "Tiger Abrodi",
+  "description": "Simple Remix Sockets Google Docs Sample",
+  "license": "MIT",
   "scripts": {
     "build": "remix build",
     "dev": "remix watch",
