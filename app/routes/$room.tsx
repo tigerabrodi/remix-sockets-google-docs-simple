@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { LoaderFunction, useLoaderData } from 'remix'
 import { Textarea } from '~/components/Textarea'
+import { useSocketListen } from '~/hooks/useSocketListen'
 import { colors } from '~/theme'
 import { wsContext } from '~/ws-context'
 
@@ -31,13 +32,7 @@ export default function Index() {
     socket.emit('join-room', room)
   }, [socket])
 
-  React.useEffect(() => {
-    if (!socket) return
-
-    socket.on('receive-client', (text) => {
-      setText(text)
-    })
-  }, [socket])
+  useSocketListen({ socket, event: 'receive-client', setData: setText })
 
   return (
     <main
