@@ -13,8 +13,8 @@ export default function Index() {
   React.useEffect(() => {
     if (!socket) return
 
-    socket.on('receive-client', (data) => {
-      setText(data)
+    socket.on('receive-client', (text) => {
+      setText(text)
     })
   }, [socket])
 
