@@ -1,15 +1,14 @@
 import { test, expect } from '@playwright/test'
+import { getPages } from './utils'
 
 const randomText = 'some random text'
+const baseUrl = 'http://localhost:3000/'
 
 test('Two clients typing on the landing page.', async ({ browser }) => {
-  const context = await browser.newContext()
+  const { pageOne, pageTwo, context } = await getPages(browser)
 
-  const pageOne = await context.newPage()
-  const pageTwo = await context.newPage()
-
-  await pageOne.goto('http://localhost:3000/')
-  await pageTwo.goto('http://localhost:3000/')
+  await pageOne.goto(baseUrl)
+  await pageTwo.goto(baseUrl)
 
   // Type in page one
   await pageOne.fill('textarea', randomText)
@@ -22,14 +21,11 @@ test('Two clients typing on the landing page.', async ({ browser }) => {
 })
 
 test('Two clients typing in a room', async ({ browser }) => {
-  const context = await browser.newContext()
-
-  const pageOne = await context.newPage()
-  const pageTwo = await context.newPage()
+  const { pageOne, pageTwo, context } = await getPages(browser)
 
   const room = 1
-  await pageOne.goto(`http://localhost:3000/${room}`)
-  await pageTwo.goto(`http://localhost:3000/${room}`)
+  await pageOne.goto(`${baseUrl}${room}`)
+  await pageTwo.goto(`${baseUrl}${room}`)
 
   // Type in page one
   await pageOne.fill('textarea', randomText)
