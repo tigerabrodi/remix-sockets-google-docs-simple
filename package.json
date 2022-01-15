@@ -18,6 +18,7 @@
     "@remix-run/react": "^1.1.1",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
+    "dotenv": "^12.0.3",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "react": "^17.0.2",

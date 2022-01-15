@@ -6,6 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from 'remix'
 import React from 'react'
 import type { MetaFunction } from 'remix'
@@ -14,6 +15,12 @@ import { Socket } from 'socket.io-client'
 import { wsContext } from './ws-context'
 import { DefaultEventsMap } from 'socket.io/dist/typed-events'
 import styles from './styles.css'
+
+declare global {
+  interface Window {
+    ENV: { BASE_URL_DEV: string | undefined }
+  }
+}
 
 export const meta: MetaFunction = () => {
   return { title: 'Simple Google Docs' }
@@ -44,6 +51,18 @@ export default function App() {
   )
 }
 
+type LoaderData = {
+  ENV: { BASE_URL_DEV: string | undefined }
+}
+
+export function loader(): LoaderData {
+  return {
+    ENV: {
+      BASE_URL_DEV: process.env.BASE_URL_DEV,
+    },
+  }
+}
+
 function Document({
   children,
   title,
@@ -51,6 +70,7 @@ function Document({
   children: React.ReactNode
   title?: string
 }) {
+  const data = useLoaderData<LoaderData>()
   return (
     <html lang="en">
       <head>
@@ -61,6 +81,11 @@ function Document({
         <Links />
       </head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
+          }}
+        />
         {children}
         <ScrollRestoration />
         <Scripts />

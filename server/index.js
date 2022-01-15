@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const { createServer } = require('http')
 const { Server } = require('socket.io')
 const { createRequestHandler } = require('@remix-run/express')
+require('dotenv').config()
 
 const MODE = process.env.NODE_ENV
 const BUILD_DIR = path.join(process.cwd(), 'server/build')
@@ -49,7 +50,7 @@ app.all(
       }
 )
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 httpServer.listen(port, () => {
   console.log(`Express server listening on port ${port}`)
 })

@@ -1,5 +1,9 @@
 import io from 'socket.io-client'
 
 export function connect() {
-  return io('http://localhost:3000')
+  if (!window.ENV.BASE_URL_DEV) {
+    throw 'error: no port'
+  }
+
+  return io(window.ENV.BASE_URL_DEV)
 }
