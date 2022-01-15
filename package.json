@@ -9,7 +9,8 @@
     "postinstall": "remix setup node",
     "start": "cross-env NODE_ENV=production node server/index.js",
     "start:dev": "cross-env NODE_ENV=development node server/index.js",
-    "test": "npx playwright test --headed"
+    "test": "npx playwright test --headed",
+    "deploy": "npm run build && npm start"
   },
   "dependencies": {
     "@remix-run/express": "^1.1.1",
