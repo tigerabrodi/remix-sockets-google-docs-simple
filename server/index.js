@@ -15,9 +15,17 @@ const httpServer = createServer(app)
 const io = new Server(httpServer)
 
 io.on('connection', (socket) => {
-  socket.on('send-client', (data) => {
-    socket.emit('receive-client', data)
-    socket.broadcast.emit('receive-client', data)
+  socket.on('send-client', (text, room) => {
+    if (room) {
+      io.sockets.in(room).emit('receive-client', text)
+    } else {
+      socket.emit('receive-client', text)
+      socket.broadcast.emit('receive-client', text)
+    }
+  })
+
+  socket.on('join-room', (room) => {
+    socket.join(room)
   })
 })
 
