@@ -11,3 +11,7 @@ After forking and cloning, run `npm install`, then you need two environment vari
 # Tests
 
 To run the tests: `npm run test`.
+
+# Demo
+
+https://user-images.githubusercontent.com/49603590/149983975-0139acfb-689b-4f23-8a59-447a3f145d81.mp4
