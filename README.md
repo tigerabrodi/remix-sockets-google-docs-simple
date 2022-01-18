@@ -1,5 +1,7 @@
 This is just a simple google docs thing, me playing around with Remix and sockets.
 
+TODO: from socket.io to yjs sockets, support CRDT.
+
 # Installation
 
 After forking and cloning, run `npm install`, then you need two environment variables:
